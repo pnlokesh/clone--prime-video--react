@@ -1,11 +1,27 @@
 import React from 'react';
-import { Footer, Navbar } from '../components';
+import styled from 'styled-components';
+import { Footer, HomeCarousel, MoviesRow, Navbar } from '../components';
+import ScrollTest from '../components/ScrollTest';
+
+const HomeContainer = styled.div`
+  overflow-x: hidden;
+  background-color: #10141d;
+  color: #fff;
+`;
 
 function HomePage() {
   return (
     <>
       <Navbar />
-      <h1>homepage</h1>
+
+      <HomeContainer>
+        {/* <ScrollTest /> */}
+        <HomeCarousel />
+
+        <MoviesRow />
+        <MoviesRow />
+      </HomeContainer>
+
       <Footer />
     </>
   );

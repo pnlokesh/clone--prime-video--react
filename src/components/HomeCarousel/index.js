@@ -24,14 +24,14 @@ function HomeCarousel() {
         <Slider {...settings}>
           <CarouselImage>
             <img
-              src="https://image.tmdb.org/t/p/original/xGuOF1T3WmPsAcQEQJfnG7Ud9f8.jpg"
+              src="https://image.tmdb.org/t/p/original/9yBVqNruk6Ykrwc32qrK2TIE5xw.jpg"
               alt="poster"
             />
           </CarouselImage>
 
           <CarouselImage>
             <img
-              src="https://image.tmdb.org/t/p/original/xGuOF1T3WmPsAcQEQJfnG7Ud9f8.jpg"
+              src="https://image.tmdb.org/t/p/original/9yBVqNruk6Ykrwc32qrK2TIE5xw.jpg"
               alt="poster"
             />
           </CarouselImage>

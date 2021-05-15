@@ -1,7 +1,6 @@
 import React from 'react';
-import styled from 'styled-components';
-import { Footer, HomeCarousel, MoviesRow, Navbar } from '../components';
-import ScrollTest from '../components/ScrollTest';
+import styled from 'styled-components/macro';
+import { HomeCarousel, MoviesRow } from '../components';
 
 const HomeContainer = styled.div`
   overflow-x: hidden;
@@ -12,8 +11,6 @@ const HomeContainer = styled.div`
 function HomePage() {
   return (
     <>
-      <Navbar />
-
       <HomeContainer>
         {/* <ScrollTest /> */}
         <HomeCarousel />
@@ -21,8 +18,6 @@ function HomePage() {
         <MoviesRow />
         <MoviesRow />
       </HomeContainer>
-
-      <Footer />
     </>
   );
 }

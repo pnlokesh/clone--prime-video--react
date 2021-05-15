@@ -43,22 +43,22 @@ function Navbar() {
         <Nav navToggle={navToggle}>
           <NavLeft onClick={(navToggle) => navToggle && handleNavToggle()}>
             <NavLeftItem>
-              <NavLink to="/" activeClassName="navlink-active">
+              <NavLink to="/" exact activeClassName="navlink-active">
                 Home
               </NavLink>
             </NavLeftItem>
             <NavLeftItem>
-              <NavLink to="/movies" activeClassName="navlink-active">
+              <NavLink to="/movies" exact activeClassName="navlink-active">
                 Movies
               </NavLink>
             </NavLeftItem>
             <NavLeftItem>
-              <NavLink to="/tvshows" activeClassName="navlink-active">
+              <NavLink to="/tvshows" exact activeClassName="navlink-active">
                 TV Shows
               </NavLink>
             </NavLeftItem>
             <NavLeftItem>
-              <NavLink to="/kids" activeClassName="navlink-active">
+              <NavLink to="/kids" exact activeClassName="navlink-active">
                 Kids
               </NavLink>
             </NavLeftItem>

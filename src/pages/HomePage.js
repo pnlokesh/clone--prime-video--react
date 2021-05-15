@@ -1,6 +1,7 @@
 import React from 'react';
 import styled from 'styled-components/macro';
 import { HomeCarousel, MoviesRow } from '../components';
+import requests from '../requests/requests';
 
 const HomeContainer = styled.div`
   overflow-x: hidden;
@@ -13,10 +14,14 @@ function HomePage() {
     <>
       <HomeContainer>
         {/* <ScrollTest /> */}
-        <HomeCarousel />
+        <HomeCarousel fetchUrl={requests.fetchTrending} />
 
-        <MoviesRow />
-        <MoviesRow />
+        <MoviesRow title="Trending" fetchUrl={requests.fetchTrending} />
+        <MoviesRow title="Action" fetchUrl={requests.fetchActionMovies} />
+        <MoviesRow title="Comedy" fetchUrl={requests.fetchComedyMovies} />
+        <MoviesRow title="Animation" fetchUrl={requests.fetchAnimationMovies} />
+        <MoviesRow title="Horror" fetchUrl={requests.fetchHorrorMovies} />
+        <MoviesRow title="Documentary" fetchUrl={requests.fetchDocumentaries} />
       </HomeContainer>
     </>
   );

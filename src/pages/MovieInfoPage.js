@@ -1,37 +1,61 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import styled from 'styled-components/macro';
+import { useParams } from 'react-router-dom';
 import { Rating } from '@material-ui/lab';
 import PlayArrowIcon from '@material-ui/icons/PlayArrow';
 import PlayArrowOutlinedIcon from '@material-ui/icons/PlayArrowOutlined';
 
+import axiosInstance from '../requests/axios';
+
 function MovieInfoPage() {
+  const { id } = useParams();
+  // console.log(id);
+  const APIKEY = process.env.REACT_APP_TMDB_API_KEY;
+  const imageBaseUrl = 'https://image.tmdb.org/t/p/original/';
+  const fetchMovieById = `/movie/${id}?api_key=${APIKEY}`;
+
+  const [movie, setMovie] = useState({});
+  useEffect(() => {
+    async function fetchData() {
+      const request = await axiosInstance.get(fetchMovieById);
+      setMovie(request.data);
+    }
+    fetchData();
+  }, [fetchMovieById]);
+  // console.log(movie);
+
   return (
-    <Container>
+    <Container bgImage={imageBaseUrl + movie?.backdrop_path}>
       <div className="container">
         <div className="left-container">
-          <h1 className="movie-title">Mortal Kombat</h1>
+          <h1 className="movie-title">
+            {movie?.original_title || movie?.title || movie?.original_name}
+          </h1>
           <div className="info">
             <div className="rating">
               <Rating
                 name="half-rating-read"
-                defaultValue={7.7 / 2}
-                precision={0.5}
+                defaultValue={0}
+                value={movie?.vote_average / 2}
+                precision={0.2}
                 readOnly
               />
             </div>
-            <p className="details">IMBD 7.7 &nbsp; 2021 &nbsp; 102min</p>
+            <p className="details">
+              IMBD {movie?.vote_average} &nbsp;{' '}
+              {movie.release_date ? movie.release_date.slice(0, 4) : 'unknown'}{' '}
+              &nbsp; {movie?.runtime}min
+            </p>
           </div>
 
-          <p className="overview">
-            Washed-up MMA fighter Cole Young, unaware of his heritage, and
-            hunted by Emperor Shang Tsung's best warrior, Sub-Zero, seeks out
-            and trains with Earth's greatest champions as he prepares to stand
-            against the enemies of Outworld in a high stakes battle for the
-            universe.
-          </p>
+          <p className="overview">{movie?.overview}</p>
 
           <p className="genre">
-            Genres: <span>Comedy, Thriller</span>
+            Genres: &nbsp;
+            {movie.genres &&
+              Array.from(movie.genres).map((genre) => (
+                <span>{genre.name}, &nbsp;</span>
+              ))}
           </p>
 
           <div className="buttons">
@@ -46,8 +70,8 @@ function MovieInfoPage() {
         </div>
         <div className="right-container">
           <img
-            src="https://image.tmdb.org/t/p/original/xGuOF1T3WmPsAcQEQJfnG7Ud9f8.jpg"
-            alt=""
+            src={imageBaseUrl + movie?.poster_path}
+            alt={`${movie?.title} poster`}
           />
         </div>
       </div>
@@ -66,8 +90,7 @@ const Container = styled.div`
       rgba(0, 0, 0, 0.75) 0%,
       rgba(0, 0, 0, 0.75) 100%
     ),
-    url('https://image.tmdb.org/t/p/original/9yBVqNruk6Ykrwc32qrK2TIE5xw.jpg')
-      no-repeat;
+    url(${(props) => props.bgImage}) no-repeat;
   background-position: center;
   background-size: cover;
 

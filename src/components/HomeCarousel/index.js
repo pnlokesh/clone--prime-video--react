@@ -1,10 +1,11 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import Slider from 'react-slick';
 import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
 import { Container, CarouselImage } from './HomeCarouselStyles';
+import axiosInstance from '../../requests/axios';
 
-function HomeCarousel() {
+function HomeCarousel({ fetchUrl }) {
   const settings = {
     lazyLoad: true,
     dots: true,
@@ -18,23 +19,33 @@ function HomeCarousel() {
     adaptiveHeight: true,
     arrows: false,
   };
+
+  const [movies, setMovies] = useState([]);
+
+  useEffect(() => {
+    const fetchData = async () => {
+      const response = await axiosInstance.get(fetchUrl);
+      const tenMovies = response.data.results.slice(0, 10);
+      setMovies(tenMovies);
+    };
+    fetchData();
+  }, [fetchUrl]);
+  // console.log(movies);
+
   return (
     <Container>
       <div className="container">
         <Slider {...settings}>
-          <CarouselImage>
-            <img
-              src="https://image.tmdb.org/t/p/original/9yBVqNruk6Ykrwc32qrK2TIE5xw.jpg"
-              alt="poster"
-            />
-          </CarouselImage>
-
-          <CarouselImage>
-            <img
-              src="https://image.tmdb.org/t/p/original/9yBVqNruk6Ykrwc32qrK2TIE5xw.jpg"
-              alt="poster"
-            />
-          </CarouselImage>
+          {movies.map((movie) => (
+            <CarouselImage>
+              <img
+                src={`https://image.tmdb.org/t/p/original/${movie?.backdrop_path}`}
+                alt={
+                  movie?.title || movie?.original_name || movie?.original_title
+                }
+              />
+            </CarouselImage>
+          ))}
         </Slider>
       </div>
     </Container>

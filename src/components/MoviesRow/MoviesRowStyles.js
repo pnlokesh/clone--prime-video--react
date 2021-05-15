@@ -106,11 +106,11 @@ export const CardTitle = styled.h2`
   padding: 10px 0;
 `;
 
-export const CardDesc = styled.p`
-  font-size: clamp(1rem, 3vw, 1.5rem);
-  font-weight: 400;
-  padding: 15px 0;
-`;
+// export const CardDesc = styled.p`
+//   font-size: clamp(1rem, 3vw, 1.5rem);
+//   font-weight: 400;
+//   padding: 15px 0;
+// `;
 
 export const CardRating = styled.div`
   text-align: center;

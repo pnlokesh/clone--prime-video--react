@@ -13,15 +13,17 @@ function App() {
       <Router>
         <Navbar />
 
-        <Suspense fallback={<CircularProgress className="cicular-loading" />}>
-          <Switch>
-            <Route path="/" exact component={HomePage} />
+        <div className="app__body">
+          <Suspense fallback={<CircularProgress className="cicular-loading" />}>
+            <Switch>
+              <Route path="/" exact component={HomePage} />
 
-            <Route path="/movie/:id" exact component={MovieInfoPage} />
-          </Switch>
-        </Suspense>
+              <Route path="/movie/:id" exact component={MovieInfoPage} />
+            </Switch>
+          </Suspense>
 
-        <Footer />
+          <Footer />
+        </div>
       </Router>
     </div>
   );

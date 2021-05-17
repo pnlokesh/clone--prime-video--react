@@ -35,6 +35,11 @@ const GlobalStyles = createGlobalStyle`
         z-index: 999;
     }
 
+    .app__body{
+        position: relative;
+        top: 80px;
+    }
+
 `;
 
 export default GlobalStyles;

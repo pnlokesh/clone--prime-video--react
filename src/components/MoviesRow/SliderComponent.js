@@ -9,19 +9,19 @@ function SliderComponent({ children }) {
   const settings = {
     lazyLoad: true,
     dots: false,
-    infinite: false,
+    infinite: true,
     slidesToShow: 6,
     slidesToScroll: 6,
+    initialSlide: 0,
+    adaptiveHeight: true,
     nextArrow: <ArrowForwardIosIcon />,
     prevArrow: <ArrowBackIosIcon />,
     responsive: [
       {
-        breakpoint: 768,
+        breakpoint: 770,
         settings: {
           slidesToShow: 4,
           slidesToScroll: 4,
-          infinite: false,
-          dots: false,
         },
       },
       {

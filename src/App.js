@@ -1,9 +1,11 @@
-import React from 'react';
+import React, { lazy, Suspense } from 'react';
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
+import { CircularProgress } from '@material-ui/core';
 
 import { Footer, Navbar } from './components';
-import HomePage from './pages/HomePage';
-import MovieInfoPage from './pages/MovieInfoPage';
+
+const HomePage = lazy(() => import('./pages/HomePage'));
+const MovieInfoPage = lazy(() => import('./pages/MovieInfoPage'));
 
 function App() {
   return (
@@ -11,15 +13,13 @@ function App() {
       <Router>
         <Navbar />
 
-        <Switch>
-          <Route path="/" exact>
-            <HomePage />
-          </Route>
+        <Suspense fallback={<CircularProgress className="cicular-loading" />}>
+          <Switch>
+            <Route path="/" exact component={HomePage} />
 
-          <Route path="/movie/:id" exact>
-            <MovieInfoPage />
-          </Route>
-        </Switch>
+            <Route path="/movie/:id" exact component={MovieInfoPage} />
+          </Switch>
+        </Suspense>
 
         <Footer />
       </Router>

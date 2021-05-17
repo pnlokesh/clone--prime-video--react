@@ -27,6 +27,14 @@ const GlobalStyles = createGlobalStyle`
         margin: 0 auto;
     }
 
+    .circular-loading{
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        z-index: 999;
+    }
+
 `;
 
 export default GlobalStyles;

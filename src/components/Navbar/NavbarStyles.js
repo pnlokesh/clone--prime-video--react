@@ -6,6 +6,8 @@ export const Header = styled.header`
   width: 100vw;
   height: 80px;
   font-size: 1rem;
+  position: fixed;
+  z-index: 999;
 
   .container {
     display: flex;
@@ -29,9 +31,9 @@ export const Nav = styled.nav`
   justify-content: space-between;
   @media screen and (max-width: 900px) {
     display: ${(props) => !props.navToggle && 'none'};
-    position: absolute;
+    position: fixed;
     top: 0;
-    left: -3vw;
+    left: 0;
     width: 100vw;
     height: 100vh;
     background-color: #252e39;
@@ -160,7 +162,8 @@ export const NavRightItem = styled.li`
 
 export const NavMobileToggle = styled.div`
   cursor: pointer;
-  position: absolute;
+  position: fixed;
+  z-index: 999;
   right: 0;
   @media screen and (min-width: 901px) {
     display: none;

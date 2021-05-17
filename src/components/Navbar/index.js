@@ -41,7 +41,7 @@ function Navbar() {
         <Logo src={logoImg} alt="prime video logo" />
 
         <Nav navToggle={navToggle}>
-          <NavLeft onClick={(navToggle) => navToggle && handleNavToggle()}>
+          <NavLeft onClick={(navToggle) => navToggle && setNavToggle(false)}>
             <NavLeftItem>
               <NavLink to="/" exact activeClassName="navlink-active">
                 Home
@@ -82,9 +82,9 @@ function Navbar() {
             </NavRightItem>
 
             <NavRightItem
-              onClick={(navToggle) => navToggle && handleNavToggle()}
+              onClick={(navToggle) => navToggle && setNavToggle(false)}
             >
-              <Link to="/">Sign In</Link>
+              <Link to="/signin">Sign In</Link>
             </NavRightItem>
           </NavRight>
         </Nav>
